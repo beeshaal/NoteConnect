@@ -1,0 +1,121 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.25,shrink-to-fit=no">
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    {% block title%}
+    <title>Entrance Champs</title>
+    {% endblock title%}
+</head>
+
+<body>
+ <!-- navbar  -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky;">
+    <a href="#"><img src="{% static 'images/logo2.png' %}" alt="logo" height="50px" width="100px"></a>
+    <!-- <a class="navbar-brand" href="#">Entrance Champs</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse ml-sm-5 justify-content-end" id="navbarSupportedContent">
+    
+        {% block nav %}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item active dropdown mr-sm-3">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Courses
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#course">IOE</a>
+                    <a class="dropdown-item" href="#course">IOM</a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="#services">Services</span></a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+        </ul>
+        {% endblock nav %}
+
+        <div class="d-flex justify-content-end">
+            {% if user.is_authenticated %}
+            {% block rightnav %}
+        <span class="text-white mr-lg-5 pt-sm-1">Welcome,<strong> {{request.user.first_name}}</strong></span>
+        <a href="signout"><button class="btn btn-success mr-sm-2" type="submit">Sign Out</button></a>
+            {% endblock rightnav %}
+        {% else %}
+        <form class="form-inline my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-5" type="submit">Search</button>    
+        </form>
+        <button class="btn btn-success mr-sm-3" type="submit" data-toggle="modal"
+                data-target="#signupModal">Sign Up</button>
+        <button class="btn btn-success mr-sm-2" type="submit" type="submit" data-toggle="modal"
+                data-target="#signinModal">Sign In</button>
+        {% endif %}
+        </div>
+
+        
+
+    </div>
+</nav>
+
+<!-- home -->
+<div style="background-color: #addfa2!important; padding: 170px 0px; border-bottom: 1px solid black;">
+    <div class="d-flex justify-content-center">
+        <h1>NoteConnect</h1>
+    </div>
+    <div class="d-flex justify-content-center">
+        <h1>
+            <h4>a web platform to share study notes and engage in QNA discussions</h4>
+        </h1>
+    </div>
+    <div class="d-flex justify-content-center mt-lg-3">
+        {% if user.is_authenticated %}
+       <a href="#course"><button type="button" class="btn btn-success px-lg-5">Get started >></button></a>
+       {% else %}
+       <button class="btn btn-success mr-sm-2 px-lg-5" type="submit" type="submit" data-toggle="modal"
+                data-target="#signinModal">Get Started >></button>
+       {%endif%}
+    </div>
+
+</div>
+
+    <!-- footer  -->
+    <div class="bg-dark text-success d-flex justify-content-center py-sm-2" style= "border: 2px solid green;">
+        <h5>Copyright &copy; 2023 NoteConnect - Developed by Team A2B </h5>
+    </div>
+
+
+    
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
