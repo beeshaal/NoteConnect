@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     {% block title%}
-    <title>Entrance Champs</title>
+    <title>NoteConnect</title>
     {% endblock title%}
 </head>
 
@@ -33,15 +33,6 @@
             </li>
             <li class="nav-item active mr-sm-3">
                 <a class="nav-link" href="#about">About</a>
-            </li>
-            <li class="nav-item active dropdown mr-sm-3">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Courses
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#course">IOE</a>
-                    <a class="dropdown-item" href="#course">IOM</a>
             </li>
             <li class="nav-item active mr-sm-3">
                 <a class="nav-link" href="#services">Services</span></a>
@@ -74,6 +65,103 @@
 
     </div>
 </nav>
+
+   
+<!-- Signup Modal --> 
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">EntranceChamps -Sign Up</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="signup" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" class="form-control" id="fullname" placeholder="Enter full name"
+                        name="fullname">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                        placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="inputfaculty">Faculty</label><br>
+                    <select id="faculty" name="faculty">
+                        <option value="">Select Faculty</option>
+                        <option value="faculty1">Faculty of Science and Technology</option>
+                        <option value="faculty2">Faculty of Health Science</option>
+                        <option value="faculty3">Faculty of Management Studies</option>
+                        <option value="faculty4">Faculty of Humanities and Science Sciences</option>
+                        <!-- Add more faculty options as needed -->
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label for="inputprogram">Program</label><br>
+                    <select id="program" name="program" disabled>
+                        <option value="">Select Faculty First</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1">Password</label>
+                    <input type="password" class="form-control" id="inputPassword1"
+                        placeholder="Enter password" name="pass1">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword2">Confirm password</label>
+                    <input type="password" class="form-control" id="inputPassword2"
+                        placeholder="Enter password again" name="pass2">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div> 
+
+<!-- SignIn Modal -->
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">NoteConnect -Sign In</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="signin" method="post" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputemail">Email</label>
+                    <input type="text" class="form-control" id="inputemail" placeholder="Enter email" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1">Password</label>
+                    <input type="password" class="form-control" id="inputPassword1"
+                        placeholder="Enter password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+
 
 <!-- home -->
 <div style="background-color: #addfa2!important; padding: 170px 0px; border-bottom: 1px solid black;">
@@ -116,6 +204,37 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                $('#faculty').change(function() {
+                    var selectedFaculty = $(this).val();
+                    var departmentDropdown = $('#program');
+                    departmentDropdown.empty();
+        
+                    if (selectedFaculty) {
+                        departmentDropdown.prop('disabled', false);
+                        // Define the mapping of faculty to department options
+                        var departmentOptions = {
+                            'faculty1': ['Bachelor of Computer Engineering','Bachelor of Civil Engineering','Bachelor of Engineering in Information Technology','Bachelor of Civil & Rural Engineering','Bachelor of Software Engineering','Bachelor of Electrical & Electronics Engineering','Bachelor of Electronics & Communication Engineering','Bachelor in Computer Application','Bachelor of Architecture','Bachelor of Science in Environmental Engineering','Bachelor of Civil Engineering for Diploma Holders'],
+                            'faculty2': ['Bachelor of Science in Biochemistry','Bachelor of Pharmaceutical Science','Bachelor of Science in Medical Laboratory Technology','Bachelor of Public Health','Bachelor of Science in Medical Microbiology','Bachelor of Science in Medical Biochemistry','Bachelor of Science in Nursing(Annual)','Bachelor of Nursing Science','Bachelor of Optometry','Bachelor of Physiotherapy'],
+                            'faculty3': ['Bachelor of Business Administration','Bachelor of Business Administration -Banking and Insurance' ,'Bachelor of Business Administration -Travel and Tourism','Bachelor of Computer Information System','Bachelor of Hotel Management','Bachelor in Health Care Management','Post Graduate Diploma in Health Care Management'],
+                            'faculty4': ['Bachelor of Development Studies(BDEVS)','Bachelor of English and Communication Studies(BECS)', 'Bachelor of Entrepreneurship Development(BED)','Bachelor of Arts Bachelor of Laws (B.A.L.L.B.)'],
+                            // Add more faculties and their corresponding departments as needed
+                        };
+        
+                        // Populate the department dropdown with options based on the selected faculty
+                        var options = departmentOptions[selectedFaculty];
+                        $.each(options, function(index, department) {
+                            departmentDropdown.append($('<option></option>').val(department).text(department));
+                        });
+                    } else {
+                        departmentDropdown.prop('disabled', true);
+                        departmentDropdown.append($('<option value="">Select Faculty First</option>'));
+                    }
+                });
+            });
+        </script>
+        
 </body>
 
 </html>
