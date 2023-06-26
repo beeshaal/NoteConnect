@@ -1,0 +1,239 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NoteConnect</title>
+        <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+        {% comment %} <link rel="stylesheet" href= "{% static 'css\style.css' %}"> {% endcomment %}
+       
+    </head>
+ 
+    <body>
+  
+       <!-- Signup Modal --> 
+       <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+       aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">NoteConnect -Sign Up</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <form action="signup" method="post">
+                       {% csrf_token %}
+                       <div class="form-group">
+                           <label for="username">Username</label>
+                           <input type="text" class="form-control" id="username" placeholder="Enter username"
+                               name="username">
+                       </div>
+                       <div class="form-group">
+                           <label for="fullname">Full Name</label>
+                           <input type="text" class="form-control" id="fullname" placeholder="Enter full name"
+                               name="fullname">
+                       </div>
+                       <div class="form-group">
+                           <label for="inputEmail">Email address</label>
+                           <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                               placeholder="Enter email" name="email">
+                       </div>
+                    
+                       <div class="form-group">
+                           <label for="inputPassword1">Password</label>
+                           <input type="password" class="form-control" id="inputPassword1"
+                               placeholder="Enter password" name="pass1">
+                       </div>
+                       <div class="form-group">
+                           <label for="inputPassword2">Confirm password</label>
+                           <input type="password" class="form-control" id="inputPassword2"
+                               placeholder="Enter password again" name="pass2">
+                       </div>
+                       <button type="submit" class="btn btn-primary">Sign Up</button>
+                   </form>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+           </div>
+       </div>
+       </div> 
+       
+       <!-- SignIn Modal -->
+       <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+       aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title">NoteConnect -Sign In</h5>
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+               <div class="modal-body">
+                   <form action="signin" method="post" >
+                       {% csrf_token %}
+                       <div class="form-group">
+                           <label for="inputemail">Username</label>
+                           <input type="text" class="form-control" id="inputemail" placeholder="Enter username" name="username">
+                       </div>
+                       <div class="form-group">
+                           <label for="inputPassword1">Password</label>
+                           <input type="password" class="form-control" id="inputPassword1"
+                               placeholder="Enter password" name="password">
+                       </div>
+                       <button type="submit" class="btn btn-primary">Sign In</button>
+                   </form>
+               </div>
+               <div class="modal-footer">
+                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+               </div>
+           </div>
+       </div>
+       </div>
+       
+
+
+        <!-- navbar  -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: sticky;">
+           <a href="#"><img src="{% static 'images/logo1.png' %}" alt="logo" height="50px" width="100px"></a>
+           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+           </button>
+       
+           <div class="collapse navbar-collapse ml-sm-5 justify-content-end" id="navbarSupportedContent">
+           
+               {% block nav %}
+               <ul class="navbar-nav mr-auto">
+                   <li class="nav-item active mr-sm-3">
+                       <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                   </li>
+                   <li class="nav-item active mr-sm-3">
+                       <a class="nav-link" href="#about">About</a>
+                   </li>
+                   <li class="nav-item active mr-sm-3">
+                       <a class="nav-link" href="#services">Services</span></a>
+                   </li>
+                   <li class="nav-item active mr-sm-3">
+                       <a class="nav-link" href="#contact">Contact Us</a>
+                   </li>
+               </ul>
+               {% endblock nav %}
+       
+               <div class="d-flex justify-content-end">
+                   {% if user.is_authenticated %}
+                   {% block rightnav %}
+               <span class="text-white mr-lg-5 pt-sm-1">Welcome,<strong> {{request.user.first_name}}</strong></span>
+               <a href="signout"><button class="btn btn-success mr-sm-2" type="submit">Sign Out</button></a>
+                   {% endblock rightnav %}
+               {% else %}
+               <form class="form-inline my-2 my-lg-0 ">
+                   <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                   <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-5" type="submit">Search</button>    
+               </form>
+               <button class="btn btn-success mr-sm-3" type="submit" data-toggle="modal"
+                       data-target="#signupModal">Sign Up</button>
+               <button class="btn btn-success mr-sm-2" type="submit" type="submit" data-toggle="modal"
+                       data-target="#signinModal">Sign In</button>
+               {% endif %}
+               </div>
+       
+               
+       
+           </div>
+       </nav>
+       {% for message in messages %}
+       {% if message.tags == 'success' %}
+       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myMessage").modal('show');
+            });
+        </script>
+        <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="myMessageLabel">Perfect!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="text-center text-success mt-3">
+                       <img src=" {% static 'images/greentick.png' %} " width="100px" height="100px" alt="verified logo">
+                    </div>
+                    <br>
+                    <div class="mb-3">{{message}}</div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% else %}
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function(){
+                $("#myMessage").modal('show');
+            });
+        </script>
+        <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="myMessageLabel">Oops!!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center">
+                    <div class="text-center text-success mt-3">
+                       <img src=" {% static 'images/cross.png' %} " width="100px" height="100px" alt="verified logo">
+                    </div>
+                    <br>
+                    <div class="mb-3">{{message}}</div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+       
+       {% endfor%}
+
+       {%block content%}
+       {%endblock content%}
+       
+            <!-- footer  -->
+            <div class="bg-dark text-success d-flex justify-content-center py-sm-2" style= "border: 2px solid green;">
+                <h5>Copyright &copy; 2023 NoteConnect - Developed by Team A2B </h5>
+            </div>
+
+            <!-- Optional JavaScript -->
+            <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+                integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+                crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+                crossorigin="anonymous"></script>
+        </body>
+       
+       </html>

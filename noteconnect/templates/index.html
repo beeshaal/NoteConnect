@@ -1,0 +1,309 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NoteConnect</title>
+        <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href= "{% static 'css\style.css' %}">
+       
+    </head>
+
+    <body>
+
+<!-- Signup Modal --> 
+<div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">NoteConnect -Sign Up</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="signup" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Enter username"
+                        name="username">
+                </div>
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" class="form-control" id="fullname" placeholder="Enter full name"
+                        name="fullname">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                        placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1">Password</label>
+                    <input type="password" class="form-control" id="inputPassword1"
+                        placeholder="Enter password" name="pass1">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword2">Confirm password</label>
+                    <input type="password" class="form-control" id="inputPassword2"
+                        placeholder="Enter password again" name="pass2">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div> 
+
+<!-- SignIn Modal -->
+<div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="signinModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">NoteConnect -Sign In</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form action="signin" method="post" >
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="inputemail">Username</label>
+                    <input type="text" class="form-control" id="inputemail" placeholder="Enter username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1">Password</label>
+                    <input type="password" class="form-control" id="inputPassword1"
+                        placeholder="Enter password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Sign In</button>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>
+</div>
+<!-- navbar  -->
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a href="#"><img src="{% static 'images/logo.png' %}" alt="logo" height="50px" width="100px"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse ml-sm-5 justify-content-end" id="navbarSupportedContent">
+    
+        {% block nav %}
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="#about">About</a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="#contact">Contact Us</a>
+            </li>
+        </ul>
+        {% endblock nav %}
+
+        <div class="d-flex justify-content-end">
+            {% if user.is_authenticated %}
+            {% block rightnav %}
+        <span class="text-white mr-lg-5 pt-sm-1">Welcome,<strong> {{request.user.first_name}}</strong></span>
+        <a href="signout"><button class="btn btn-success mr-sm-2" type="submit">Sign Out</button></a>
+            {% endblock rightnav %}
+        {% else %}
+        <form class="form-inline my-2 my-lg-0 ">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-5" type="submit">Search</button>    
+        </form>
+        <button class="btn btn-success mr-sm-3" type="submit" data-toggle="modal"
+                data-target="#signupModal">Sign Up</button>
+        <button class="btn btn-success mr-sm-2" type="submit" type="submit" data-toggle="modal"
+                data-target="#signinModal">Sign In</button>
+        {% endif %}
+        </div>
+
+        
+
+    </div>
+</nav>
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+ crossorigin="anonymous"></script>
+ <script>
+     $(document).ready(function(){
+         $("#myMessage").modal('show');
+     });
+ </script>
+ <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="myMessageLabel">Perfect!</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+             <div class="text-center text-success mt-3">
+                <img src=" {% static 'images/greentick.png' %} " width="100px" height="100px" alt="verified logo">
+             </div>
+             <br>
+             <div class="mb-3">{{message}}</div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ {% else %}
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+ crossorigin="anonymous"></script>
+ <script>
+     $(document).ready(function(){
+         $("#myMessage").modal('show');
+     });
+ </script>
+ <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="myMessageLabel">Oops!!</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+             <div class="text-center text-success mt-3">
+                <img src=" {% static 'images/cross.png' %} " width="100px" height="100px" alt="verified logo">
+             </div>
+             <br>
+             <div class="mb-3">{{message}}</div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ {% endif %}
+
+{% endfor%}
+
+        <section id="hero">
+            <h1>NoteConnect</h1>
+            <p>A web platform to share study notes and engage in QNA discussions</p>
+            <button>Get Started</button>
+        </section>
+
+        <section id="#features" class="section-p1">
+            <h2>About us
+            </h2>
+            <p>Students are left to their own devices to gather and compile notes when numerous institutions affiliated with a single university have the same curriculum but lack the infrastructure to share study materials.</p>
+                <p>Our web app serves as a platform to make notes easily accessible as well as engage them in sharing notes.</p>
+            <div id="fe-container" class="d-flex">
+                <div class="fe-box">
+                    <img src="{% static 'images\pu.png' %}" alt="">
+                    <h6>Pokhara University</h6>
+                </div>
+                <div class="fe-box">
+                    <img src="{% static 'images\ku.png' %}" alt="">
+                    <h6>Kathmandu Unversity</h6>
+                </div>
+                <div class="fe-box">
+                    <img src="{% static 'images\tu.png' %}" alt="">
+                    <h6>Tribhuvan University</h6>
+                </div>
+            </div>  
+        </section>
+
+        <section id="services" class="section-p1">
+            <h2>Services Offered</h2>
+            <div id="ser-container">
+                <div class="ser-box">
+                    <img src="{% static 'images\ser1.png' %}" alt="ser1">
+                    <button type="button" class="btn btn-outline-primary">View notes</button>
+                </div>
+                <div class="ser-box">
+                    <img src="{% static 'images\ser2.png' %}" alt="ser2">
+                    <button type="button" class="btn btn-outline-primary">Upload notes</button>
+                </div>
+                <div class="ser-box">
+                    <img src="{% static 'images\ser3.png' %}" alt="ser3">
+                    <button type="button" class="btn btn-outline-primary">QnA</button>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="section-p1">
+            <div class="col">
+                <img class="logo" src="{% static 'images\logo.png' %}" alt="logo">
+                <h4>Contact</h4>
+                <p><strong>Address:</strong> XYZ Street, Nepal</p>
+                <p><strong>Phone:</strong>XXX-XXX-XXX</p>
+                <div class="follow">
+                    <h4>Follow Us</h4>
+                    <div class="icon">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-twitter"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-github"></i>
+                        <i class="fa-brands fa-youtube"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <h4>About</h4>
+                <a href="about-us">About Us</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms and Conditions</a>
+            </div>
+            <div class="contact">
+                <h4>Your message</h4>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Your name</label><br>
+                    <input type="text" id="name" placeholder="Your name">
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label><br>
+                    <input type="email" id="email" placeholder="name@example.com">
+                  </div>
+                  <br>
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1">Your message</label><br>
+                    <textarea id="message" rows="3"></textarea>
+                  </div>
+                  <br>
+                  <button type="submit">Submit</button>
+            </div>
+        </footer>
+        <div class="bg-dark text-success d-flex justify-content-center py-sm-2" style= "border: 2px solid green;">
+            <h5>Copyright &copy; 2023 NoteConnect - Developed by Team A2B </h5>
+        </div>
+        <script src="https://kit.fontawesome.com/2fca20713a.js" crossorigin="anonymous"></script>
+    </body>
+
+</html>

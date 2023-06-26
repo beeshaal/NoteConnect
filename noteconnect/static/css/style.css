@@ -1,0 +1,293 @@
+@import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Spartan", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Global Styles */
+
+h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+
+h2 {
+  font-size: 46px;
+  line-height: 54px;
+  color: #222;
+}
+
+h4 {
+  font-size: 20px;
+  color: #222;
+}
+
+h6 {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #465b52;
+  margin: 15px 0 20px 0;
+}
+
+.section-p1 {
+  padding: 40px 80px;
+}
+
+.section-m1 {
+  margin: 40px 0;
+}
+
+body {
+  width: 100%;
+}
+/* navbar and header style */
+nav {
+  background-color: #f2f2f2;
+}
+
+/* .navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  position: sticky;
+}
+ */
+
+
+.search-bar {
+  display: flex;
+}
+
+.search-bar input[type="text"] {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-right: none;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-bar button[type="submit"] {
+  padding: 6px 10px;
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.user-buttons button {
+  margin-left: 10px;
+  padding: 6px 10px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.content {
+  margin: 20px;
+}
+.navbar li{
+  list-style: none;
+  padding: 0 20px;
+  position: relative;
+}
+
+.navbar li a{
+  text-decoration: none;
+  color: #222;
+}
+
+.navbar li a:hover{
+  color: #9ea9ae;
+}
+nav .logo{
+  height: 17%;
+  width: 20%;
+  padding-left: 30px;
+}
+
+
+/*Home page*/
+
+#hero{
+  background-color: #E3E6F3;
+  height: 90vh;
+  width: 100%;
+  background-position: top 25% right -70px;
+  background-size: cover;
+  padding: 201px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+#hero h4{
+  padding-bottom: 15px;
+}
+
+#hero h1{
+  color: #088178;
+}
+
+/* #hero button{
+  background: url({% static 'images/button.png' %});
+  background-color: transparent;
+  color: #088178;
+  border: 0;
+  padding: 14px 80px 14px 65px;
+  background-repeat: no-repeat;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+} */
+
+#features{
+  text-align: center;
+  background-color: #d1e8f2;
+}
+
+#features #fe-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#features .fe-box{
+  width: 188px;
+  padding: 25px 15px;
+  text-align: center;
+  box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+  border: 1px solid #303230;
+  border-radius: 4px;
+  margin: 15px 0;
+}
+
+#features .fe-box:hover{
+  box-shadow: 10px 10px 54px rgba(70, 62, 221, 0.1);
+}
+
+#features .fe-box img{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#features .fe-box h6{
+  display: inline-block;
+  padding: 9px 8px 6px 8px;
+  line-height: 1;
+  border-radius: 4px;
+  color: #088178;
+  background-color: #fddde4;
+}
+
+#features .fe-box:nth-child(2) h6{
+  background-color: #cdebbc;
+}
+
+#features .fe-box:nth-child(3) h6{
+  background-color: #9ea9ae;
+}
+
+
+/* Services css */
+#services{
+  text-align: center;
+  background-color: azure;
+}
+
+#services .ser-box{
+  width: 188px;
+  padding: 25px 15px;
+  text-align: center;
+  box-shadow: 20px 20px 34px rgba(0, 0, 0, 0.03);
+  border: 1px solid #303230;
+  border-radius: 4px;
+  margin: 15px 0;
+}
+
+#services .ser-box img{
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+#services .ser-box h6{
+  display: inline-block;
+  padding: 9px 8px 6px 8px;
+  line-height: 1;
+  border-radius: 4px;
+  color: #088178;
+  background-color: #fddde4;
+}
+
+#services #ser-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* footer */
+ footer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+ }
+
+ footer .col{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+ }
+
+ footer .logo{
+  margin-bottom: 30px;
+  height: 45%;
+  width: 46%; 
+ }
+
+ footer h4{
+  font-size: 14px;
+  padding-bottom: 20px;
+ }
+
+ footer p{
+  font-size: 13px;
+  margin: 0 0 8px 0;
+ }
+
+ footer a{
+  font-size: 13px;
+  text-decoration: none;
+  color: #222;
+  margin-bottom: 10px;
+ }
+
+ footer .follow i{
+  color: #465b52;
+  padding-right: 4px;
+  cursor: pointer;
+ }
+
+ footer .copyright{
+  width: 70%;
+  text-align: center;
+ }
+
+ /* Contact page */
+
+
+

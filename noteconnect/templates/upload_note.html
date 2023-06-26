@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>NoteConnect</title>
+    </head>
+    
+<body>
+    <form method="post">
+        {% csrf_token %}
+        
+        <div>
+          <label for="program">Program:</label>
+          <select id="program" name="program" required>
+            <option value="">Select Program</option>
+            <option value="Program 1">Program 1</option>
+            <option value="Program 2">Program 2</option>
+            <!-- Add more program options as needed -->
+          </select>
+        </div>
+        
+        <div>
+          <label for="course">Course:</label>
+          <input type="text" id="course" name="course" required>
+        </div>
+        
+        <div>
+          <label for="file">File:</label>
+          <input type="file" id="file" name="file" required>
+        </div>
+        
+        <div>
+          <label for="filetype">File Type:</label>
+          <input type="text" id="filetype" name="filetype" required>
+        </div>
+        
+        <div>
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        
+        <div>
+          <input type="submit" value="Upload">
+        </div>
+      </form>
+      
+</body>
+</html>
