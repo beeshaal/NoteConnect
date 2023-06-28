@@ -15,12 +15,11 @@
 						<th>View Notes</th>
 						<th>File Type</th>
 						<th>Description</th>
-						<th>Status</th>
 					</tr>
 					</thead>
 				{% for i in allnotes %}
 				<tbody>
-				<tr>
+				<tr style="text-align: center;">
                     <td>{{forloop.counter}}</td>
 					<td>{{i.user.first_name}}</td>
 					<td>{{i.upload_date}}</td>
@@ -29,7 +28,6 @@
 					<td><a href="{{i.notesfile.url}}" class="btn btn-success" download>Download</a></td>
 					<td>{{i.filetype}}</td>
 					<td>{{i.description}}</td>
-					<td>{{i.status}}</td>
 
                 </tr>
 				{% endfor %}

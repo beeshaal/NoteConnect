@@ -1,0 +1,35 @@
+{%extends 'admin_dashboard.html'%}
+{% block content%}
+<div class="container">
+  <table>
+    <thead>
+      <tr>
+        <th>SN</th>
+        <th>Uploaded By</th>
+        <th>Uploaded On</th>
+        <th>Program</th>
+        <th>Semester</th>
+        <th>Course Name</th>
+        <th>File</th>
+        <th>Assign Status</th>
+      </tr>
+    </thead>
+    {% for i in context1.an %}
+    <tbody>
+      <tr style="text-align: center;">
+        <td>{{forloop.counter}}</td>
+        <td>{{i.user.username}}</td>
+        <td>{{i.upload_date}}</td>
+        <td>{{i.program}}</td>
+        <td>{{i.semester}}</td>
+        <td>{{i.course}}</td>
+        <td><a href="{{i.notesfile.url}}" class="btn btn-primary" download>Download</a></td>
+        <td>
+          <button onclick="window.location.href='{% url 'assign_rejected' i.id %}'" class="btn-danger">Reject  &#x2716;</button>
+        </td>
+      </tr>
+    </tbody>
+    {%endfor%}
+  </table>
+</div>
+{%endblock content%}

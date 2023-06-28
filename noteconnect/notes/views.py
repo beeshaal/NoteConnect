@@ -11,14 +11,14 @@ def uploadnotes(request):
     
     if request.method == 'POST':
         program = request.POST['program']
+        semester = request.POST['semester']
         course = request.POST['course']
         file = request.POST['file']
         filetype = request.POST['filetype']
         description = request.POST['description']
         user = User.objects.filter(username=request.user.username).first()
         newnote = Notes.objects.create(user=user,upload_date= date.today(),program=program,course=course,notesfile=file,filetype=filetype,description=description,status='pending')
-        newnote.save()
-        messages.success(request,'Notes uploaded successfully!')
+        messages.success(request,'Submitted For Approval!')
         return redirect('viewnotes')
 
 def viewnotes(request):
