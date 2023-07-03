@@ -1,0 +1,199 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {%block title%} <title>NoteConnect</title> {%endblock title%} 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap");
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Spartan", sans-serif;
+          }
+          <style>
+            body{
+              background-color:#e6ffff;
+            }
+            /* Style for the title */
+            h1 {
+              text-align: center;
+              margin-bottom: 50px;
+            }
+            /* Style for the logout button */
+            .logout-btn {
+              position: absolute;
+              top: 20px;
+              right: 20px;
+              background-color: green;
+              color: #fff;
+              border: none;
+              padding: 14px 16px;
+              text-decoration: none;
+              font-size: 17px;
+              cursor: pointer;
+            }
+            .logout-btn:hover {
+              background-color: darkgreen;
+            }
+            /* Style for the card blocks */
+            .card {
+              padding: 20px;
+              border-radius: 5px;
+              box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+              background-color: #f2f2f2;
+              margin-bottom: 20px;
+            }
+            .card h2 {
+              margin-top: 0;
+            }
+            .container {
+              max-width: 1500px;
+              margin: 0 auto;
+              padding: 20px;
+            }
+            /* Style for the title */
+            h1 {
+              text-align: center;
+              margin-bottom: 50px;
+            }
+            /* Style for the table */
+            table {
+              border-collapse: collapse;
+              width: 100%;
+              background-color: #f2f2f2;
+            }
+            th, td {
+              text-align: center;
+              padding: 8px;
+            }
+            th {
+              background-color: #333;
+              color: white;
+            }
+            tr{
+              text-align: center;
+            }
+        </style>
+        {% block style %}{% endblock style %}
+    </head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <a class="mt-0" href="/"><img  src="{% static 'images/nc.png' %}" alt="logo" height="55px" width="100px"></a>
+        {% block nav %}
+        <ul class="navbar-nav mr-auto" style="margin-left:250px;">
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="{% url 'uploadnotes' %}">Upload Notes</a>
+            </li>
+            <li class="nav-item active mr-sm-3">
+              <a class="nav-link" href="{% url 'view_programs' %}">View Notes</a>
+          </li>
+            <li class="nav-item active mr-sm-3">
+                <a class="nav-link" href="{% url 'myuploads' %}">My Uploads</a>
+            </li>
+            <form class="form-inline ml-lg-2 my-2 my-lg-0 " action="{% url 'search_notes' %}" method='post'>
+              {%csrf_token%}
+              <input class="form-control mr-sm-2" name="search" placeholder="Search by Course Code" aria-label="Search">
+              <button  type ="submit" class="btn btn-success my-2 my-sm-0 mr-sm-5">Search</button>
+          </form>
+        </ul>
+        {% endblock nav %}
+        <div class="d-flex justify-content-end">
+        {% if user.is_superuser %}
+      <span class="text-white mr-lg-5 pt-sm-1">Welcome, <strong>ADMIN</strong></span>
+      <a href="{% url 'signout' %}"><button class="btn btn-success mr-sm-2" type="submit">Sign Out</button></a>   
+      {% else %}
+          <span class="text-white mr-lg-5 pt-sm-1">Welcome, <strong> {{request.user.first_name}}</strong></span>
+          <a href="{% url 'signout' %}"><button class="btn btn-success mr-sm-2" type="submit">Sign Out</button></a>
+          {% endif %}
+          
+      </div>
+  </div>
+</nav>
+{% block content %}{% endblock content %}
+
+{% for message in messages %}
+{% if message.tags == 'success' %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+ crossorigin="anonymous"></script>
+ <script>
+     $(document).ready(function(){
+         $("#myMessage").modal('show');
+     });
+ </script>
+ <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="myMessageLabel">Perfect!</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+             <div class="text-center text-success mt-3">
+                <img src=" {% static 'images/greentick.png' %} " width="100px" height="100px" alt="verified logo">
+             </div>
+             <br>
+             <div class="mb-3">{{message}}</div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ {% else %}
+ <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+ integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+ crossorigin="anonymous"></script>
+ <script>
+     $(document).ready(function(){
+         $("#myMessage").modal('show');
+     });
+ </script>
+ <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+     <div class="modal-dialog modal-dialog-centered" role="document">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="myMessageLabel">Oops!!</h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+             <span aria-hidden="true">&times;</span>
+           </button>
+         </div>
+         <div class="modal-body text-center">
+             <div class="text-center text-success mt-3">
+                <img src=" {% static 'images/cross.png' %} " width="100px" height="100px" alt="verified logo">
+             </div>
+             <br>
+             <div class="mb-3">{{message}}</div>
+         </div>
+         <div class="modal-footer">
+           <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+         </div>
+       </div>
+     </div>
+   </div>
+ {% endif %}
+{% endfor%}
+{%block script%}{%endblock script%}
+<script src="https://kit.fontawesome.com/2fca20713a.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>

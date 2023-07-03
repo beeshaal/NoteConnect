@@ -1,0 +1,472 @@
+{% extends 'notes/notes_navigation.html'%}
+{% block title %}
+<title>View Notes</title>
+{% endblock title %}
+
+{% block style %}
+<style>
+    .container {
+      display: inline-block;
+      width: 45%;
+      margin: 2%;
+      padding: 10px 10px;
+    }
+    h2{
+      font-size: 20px;
+      text-align:center;
+    }
+    .semester-heading {
+      text-align: center;
+    }
+    
+    table {
+      width: 600px;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      color:black;
+    }
+    .main{
+     margin: 20px;
+    }
+    a{
+       text-decoration :none;
+    }
+  </style>
+{% endblock style %}
+
+{% block content %}
+<div class="main" style="margin:80px;">
+    <div class="container">
+      <h2 class="semester-heading">Semester I</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH212' %}">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH212' %}">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester II</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="container">
+      <h2 class="semester-heading">Semester III</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester IV</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester V</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester VI</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester VII</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester VIII</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CHM 103</td>
+            <td><a href="">Chemistry</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="">Communication Technique</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 103</td>
+            <td><a href="">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="">Mechanical workshop</a></td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}
