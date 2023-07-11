@@ -99,7 +99,7 @@
                 <a class="nav-link" href="{% url 'myuploads' %}">My Uploads</a>
             </li>
             <form class="form-inline ml-lg-2 my-2 my-lg-0 " action="{% url 'search_notes' %}" method='post'>
-              {%csrf_token%}
+              {% csrf_token %}
               <input class="form-control mr-sm-2" name="search" placeholder="Search by Course Code" aria-label="Search">
               <button  type ="submit" class="btn btn-success my-2 my-sm-0 mr-sm-5">Search</button>
           </form>

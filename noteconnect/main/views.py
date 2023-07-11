@@ -9,7 +9,7 @@ from django.db import IntegrityError
 import re
 
 def home(request):
-    return render(request,'home.html')
+    return render(request,'index.html')
     
 def signup(request):
     if request.method == 'POST':
@@ -69,3 +69,6 @@ def signout(request):
     logout(request)
     messages.success(request,'Signed out successfully!')
     return redirect('home')
+
+def qna_section(request):
+    return HttpResponse("Oops! We are working on it:(")

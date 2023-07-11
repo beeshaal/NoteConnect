@@ -4,6 +4,7 @@
 <head>
 	<title>NoteConnect - Admin Login</title>
   <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<style>
         body {
         background-color:#e6ffff
@@ -51,9 +52,22 @@
 			text-align: center;
 			color: #666;
 		}
+    .home-btn {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: green;
+      color: #fff;
+      border: none;
+      padding: 8px 16px 10px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      cursor: pointer;
+    }
 	</style>
 </head>
 <body>
+  <a href="{% url 'home' %}" class="btn btn-success home-btn"><i class="fa fa-home"></i> Home</a>
 	<div class="container">
 		<h2>NoteConnect - Admin</h2>
     <br>

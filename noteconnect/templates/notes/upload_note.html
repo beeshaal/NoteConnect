@@ -6,7 +6,7 @@
 <div class="container" style="width:1000px; font-weight:bold">
   <h3 class="mt-lg-2" style="text-align:center;">Upload Your Notes Here</h3>
   <form enctype="multipart/form-data" method='POST'>
-    {% csrf_token %}
+    {%csrf_token %}
     <div class="form-group">
       <label for="program">Program</label>
       <select class="form-control" id="program" name="program" required>
@@ -38,10 +38,19 @@
         <option value="">Select Course</option>
       </select>
     </div>
+
     <div class="form-group">
       <label for="file-type">File Type</label>
-      <input type="text" class="form-control" id="file-type" name="filetype" required>
+      <select type="text" class="form-control" id="file-type" name="filetype" required>
+        <option value="">Select File Type</option>
+        <option value="pdf">PDF</option>
+        <option value="docx">DOC</option>
+        <option value="ppt">PPT</option>
+        <option value="txt">TXT</option>
+        <option value="img">IMG</option>
+      </select>
     </div>
+
     <div class="form-group">
       <label for="note-file">Note File</label>
       <input type="file" class="form-control-file" id="note-file" name="file" required>
@@ -59,7 +68,7 @@
   const courseOptions = {
     'BE Computer': {
       'I': ['Engineering Mathematics I', 'Chemistry', 'Communication Technique','Programming in C','Basic Electrical Engineering','Mechanical Workshop'],
-      'II': ['Engineering Mathematics II','	Physics','Engineering Drawing','Object Oriented Programming in C++','Thermal Science','Applied Mechanics'],
+      'II': ['Engineering Mathematics II','Physics','Engineering Drawing','Object Oriented Programming in C++','Thermal Science','Applied Mechanics'],
       'III': ['Engineering Mathematics III','Data Structure and Algorithm','Electrical Engineering Materials','Network Theory','Electronic Devices','Logic Circuits'],
       'IV': ['Engineering Mathematics IV','Instrumentation','Electronic Circuits','Theory of Computation','Microprocessors'],
       'V': ['Numerical Methods','	Microprocessor System and Interfacing','Operating System','Computer Graphics','Integrated Digital Electronics'],
@@ -71,7 +80,7 @@
       'I': ['Course 1', 'Course 2', 'Course 3'],
       'II': ['','','','','',''],
       'III': ['','','','','',''],
-      'IV': ['','','','','',''],
+      'IV': ['Engineering Geology','','','','',''],
       'V': ['','','','','',''],
       'VI':['','','','','',''],
       'VII': ['','','','','',''],
@@ -94,7 +103,7 @@
         'IV': ['','','','','',''],
         'V': ['','','','','',''],
         'VI':['','','','','',''],
-        'VII': ['','','','','',''],
+        'VII': ['Telecommunication','','','','',''],
         'VIII': ['','','','','',''],
       },
     'BCA': {

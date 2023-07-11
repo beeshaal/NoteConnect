@@ -9,5 +9,8 @@ urlpatterns = [
     path('signout',views.signout,name="signout"),
     path('assign-accepted/<int:pid>',views.assign_accepted,name='assign_accepted'),
     path('assign-rejected/<int:pid>',views.assign_rejected,name='assign_rejected'),
-#     path('delete-note/<int:pid>',views.delete_note,name='delete_note'),
+    path('send-message',views.submit_message,name='submit_message'),
+    path('user_messages',views.user_messages,name="user_messages"),
+
+
 ]

@@ -43,6 +43,20 @@
 {% endblock style %}
 
 {% block content %}
+<form method='post' action="{% url 'render_programs'%}">
+    {% csrf_token %}
+        <div class="d-flex mt-lg-4" style="margin-left: 600px;">
+        <select id="program" name="program" class="form-control mr-lg-2" style="width:250px;">
+            <option value="">Select Program</option>
+            <option value="BE Computer">BE Computer</option>
+            <option value="BE Civil">BE Civil</option>
+            <option value="BE Software">BE Software</option>
+            <option value="BE IT">BE IT</option>
+            <option value="BCA">BCA</option>
+          </select>
+        <button type="submit" class="btn btn-success"> Enter </button>
+    </div>
+  </form>
 <div class="main" style="margin:80px;">
     <div class="container">
       <h2 class="semester-heading">Semester I</h2>
@@ -58,45 +72,46 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>MTH 112</td>
-            <td><a href="{% url 'viewnotes' course_code='MTH112' %}">Engineering Mathematics I</a></td>
+            <td>MTH 111</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH111' %}">Engineering Mathematics I</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>PHY 111</td>
-            <td><a href="{% url 'viewnotes' course_code='PHY111' %}">Physics</a></td>
+            <td>PHY 102</td>
+            <td><a href="{% url 'viewnotes' course_code='PHY102' %}">Physics</a></td>
             <td>4</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>CMP 110</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP110' %}">Fundamentals of IT</a></td>
+            <td>MEC 189</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC189' %}">Thermal Science</a></td>
             <td>2</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>CMP 113</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP113' %}">Programming in C</a></td>
+            <td>CMP 103</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP103' %}">Programming in C</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>ENG 111</td>
-            <td><a href="{% url 'viewnotes' course_code='ENG111' %}">Communication Technique</a></td>
-            <td>2</td>
+            <td>ELE 105</td>
+            <td><a href="{% url 'viewnotes' course_code='ELE105' %}">Basic Electrical Engineering</a></td>
+            <td>3</td>
           </tr>
           <tr>
             <td>6</td>
-            <td>CMP 114</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP114' %}">Problem Solving Techniques</a></td>
-            <td>3</td>
+            <td>MEC 109</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC109' %}">Engineering Drawing</a></td>
+            <td>1</td>
           </tr>
           <!-- Add more rows as needed -->
         </tbody>
       </table>
     </div>
   
+    <!-- Add more containers with similar structure for remaining semesters -->
     <div class="container">
       <h2 class="semester-heading">Semester II</h2>
       <table>
@@ -111,39 +126,39 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>MTH 114</td>
-            <td><a href="{% url 'viewnotes' course_code='MTH114' %}">Engineering Mathematics II</a></td>
+            <td>MTH 121</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH121' %}">Engineering Mathematics II</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>ELX 212</td>
-            <td><a href="{% url 'viewnotes' course_code='ELX212' %}">Logic Circuits</a></td>
-            <td>3</td>
+            <td>CHM 103</td>
+            <td><a href="{% url 'viewnotes' course_code='CHM103' %}">Chemistry</a></td>
+            <td>4</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>MTH 130</td>
-            <td><a href="{% url 'viewnotes' course_code='MTH130' %}">Mathematical Foundation of Computer Science</a></td>
-            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="{% url 'viewnotes' course_code='ENG104' %}">Communication Technique</a></td>
+            <td>2</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>CMP 115</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP115' %}">Object Oriented Programming in C++</a></td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td>MEC 120</td>
-            <td><a href="{% url 'viewnotes' course_code='MEC120' %}">Engineering Drawing</a></td>
+            <td>CMP 104</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP104' %}">Object Oriented Programming in C++</a></td>
             <td>2</td>
           </tr>
           <tr>
-            <td>6</td>
-            <td>CMP 213</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP213' %}">Web Technology</a></td>
+            <td>5</td>
+            <td>MEC 121</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC121' %}">Applied Mechanics (Static)</a></td>
             <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>MEC 178</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC178' %}">Mechanical workshop</a></td>
+            <td>1</td>
           </tr>
           <!-- Add more rows as needed -->
         </tbody>
@@ -164,39 +179,39 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>MTH 212</td>
-            <td><a href="{% url 'viewnotes' course_code='MTH212' %}">Engineering Mathematics III</a></td>
+            <td>MTH 211</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH211' %}">Engineering Mathematics III</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>CMP 220</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP220' %}">Software Engineering Fundamentals</a></td>
-            <td>3</td>
+            <td>MAT 20</td>
+            <td><a href="{% url 'viewnotes' course_code='MAT20' %}">Civil Engineering Materials</a></td>
+            <td>2</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>CMP 225</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP225' %}">Data Structure and Algorithms</a></td>
+            <td>WRE 250</td>
+            <td><a href="{% url 'viewnotes' course_code='WRE250' %}">Fluid Mechanics</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>MTH 221</td>
-            <td><a href="{% url 'viewnotes' course_code='MTH221' %}">Probability and Queuing Theory</a></td>
+            <td>ARC 216</td>
+            <td><a href="{% url 'viewnotes' course_code='ARC 216' %}">Building Technology</a></td>
             <td>2</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>CMP 212</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP212' %}">Programming in Java</a></td>
-            <td>3</td>
+            <td>ELX 201</td>
+            <td><a href="{% url 'viewnotes' course_code='ELX201' %}">Basic Electronics Engineering</a></td>
+            <td>2</td>
           </tr>
           <tr>
             <td>6</td>
-            <td>CMP 214</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP214' %}">Microprocessor and Assembly Language Programming</a></td>
-            <td>3</td>
+            <td>MEC 232</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC232' %}">Applied Mechanics (Dynamics)</a></td>
+            <td>2</td>
           </tr>
         </tbody>
       </table>
@@ -215,46 +230,42 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>1</td>
-                <td>MTH 230</td>
-                <td><a href="{% url 'viewnotes' course_code='MTH230' %}">Numerical Methods</a></td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>CMP 241</td>
-                <td><a href="{% url 'viewnotes' course_code='CMP241' %}">Computer Graphics</a></td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>CMP 334</td>
-                <td><a href="{% url 'viewnotes' course_code='CMP334' %}">Computer Organization and Architecture</a></td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>CMP 226</td>
-                <td><a href="{% url 'viewnotes' course_code='CMP226' %}">Database Management Systems</a></td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>CMP 321</td>
-                <td><a href="{% url 'viewnotes' course_code='CMP321' %}">Object Oriented Design and Modeling through UML</a></td>
-                <td>3</td>
-              </tr>
-              <tr>
-                <td>6</td>
-                <td>CMP 290</td>
-                <td><a href="{% url 'viewnotes' course_code='CMP290' %}">Project I</a></td>
-                <td>1</td>
-              </tr>
+          <tr>
+            <td>1</td>
+            <td>MTH 317</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH317' %}">Numerical Methods</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>MEC 288</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC 288' %}">Strength of Materials</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>WRE 262</td>
+            <td><a href="{% url 'viewnotes' course_code='WRE 262' %}">Hydraulics</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>SRV 201</td>
+            <td><a href="{% url 'viewnotes' course_code='SRV201' %}">Surving I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>GEO 262</td>
+            <td><a href="{% url 'viewnotes' course_code='GEO262' %}">Engineering Geology</a></td>
+            <td>3</td>
+          </tr>
         </tbody>
       </table>
     </div>
-
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <!-- Add more containers with similar structure for remaining semesters -->
     <div class="container">
       <h2 class="semester-heading">Semester V</h2>
       <table>
@@ -269,38 +280,44 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>CMP 331</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP331' %}">Applied Operating Systems</a></td>
+            <td>SRV 302</td>
+            <td><a href="{% url 'viewnotes' course_code='SRV302' %}">Surveying II</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>CMP 350</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP350' %}">Simulation and Modeling</a></td>
-            <td>3</td>
+            <td>SRV 303</td>
+            <td><a href="{% url 'viewnotes' course_code='SRV303' %}">Survey Field Project</a></td>
+            <td>1</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>CMP 457</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP457' %}">Artificial Intelligence and Neural Networks</a></td>
+            <td>WRE 351</td>
+            <td><a href="{% url 'viewnotes' course_code='WRE 351' %}">Water Resources Engineering I</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>MGT 321</td>
-            <td><a href="{% url 'viewnotes' course_code='MGT321' %}">Organization and Management</a></td>
-            <td>2</td>
+            <td>STR 332</td>
+            <td><a href="{% url 'viewnotes' course_code='STR 332' %}">Structural Analysis I</a></td>
+            <td>3</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>CMP 325</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP325' %}">Analysis and Design of Algorithms</a></td>
+            <td>GEO 373</td>
+            <td><a href="{% url 'viewnotes' course_code='GEO 373' %}">Soil Mechanics</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>6</td>
-            <td>CMP 311</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP311' %}">System Programming</a></td>
+            <td>ENV 356</td>
+            <td><a href="{% url 'viewnotes' course_code='ENV356' %}">Water Supply Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>MTH 212</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH212' %}">Probability and Statistics</a></td>
             <td>3</td>
           </tr>
         </tbody>
@@ -322,38 +339,32 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>CMP 335</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP335' %}">Computer Networks</a></td>
+            <td>WRE 353</td>
+            <td><a href="{% url 'viewnotes' course_code='WRE 353' %}">WAter Resources Engineering II</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>CMP 312</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP312' %}">Principles of Programming Language</a></td>
+            <td>GEO 383</td>
+            <td><a href="{% url 'viewnotes' course_code='GEO383' %}">Foundation Engineering</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>ECO 411</td>
-            <td><a href="{% url 'viewnotes' course_code='ECO411' %}">Engineering Economics</a></td>
+            <td>STR 340</td>
+            <td><a href="{% url 'viewnotes' course_code='STR340' %}">Structural Analysis II</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>CMP 322</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP322' %}">Object Oriented Software Development</a></td>
+            <td>ENV 367</td>
+            <td><a href="{% url 'viewnotes' course_code='ENV367' %}">Sanitary Engineering</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>CMP 341</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP341' %}">Multimedia Systems</a></td>
-            <td>3</td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td>CMP 390</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP390' %}">Project II</a></td>
+            <td>HYD 301</td>
+            <td><a href="{% url 'viewnotes' course_code='HYD301' %}">Engineering Hydrology</a></td>
             <td>3</td>
           </tr>
         </tbody>
@@ -375,32 +386,32 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>CMP 430</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP430' %}">Real Time Systems</a></td>
+            <td>TRP 476</td>
+            <td><a href="{% url 'viewnotes' course_code='TRP 476' %}">Transportation Engineering I</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>CMP 435</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP435' %}">Distributed Systems</a></td>
+            <td>STR 410</td>
+            <td><a href="{% url 'viewnotes' course_code='STR410' %}">Design of Steel and Timber Structures</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>CMP 480</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP480' %}">Enterprise Application Development</a></td>
+            <td>STR 412</td>
+            <td><a href="{% url 'viewnotes' course_code='STR412' %}">Design of R.C.C Structures</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>CMP 441</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP441' %}">Image Processing & Pattern Recognition</a></td>
-            <td>3</td>
-          </tr>
+            <td>EST 441</td>
+            <td><a href="{% url 'viewnotes' course_code='EST441' %}">Estimating and Valution</a></td>
+            <td>2</td>
+``          </tr>
           <tr>
             <td>5</td>
-            <td>CMP 421</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP421' %}">Software Testing, Verification, Validation and Quality Assurance</a></td>
+            <td>MNG 410</td>
+            <td><a href="{% url 'viewnotes' course_code='MNG410' %}">Engineering Economics Elective I</a></td>
             <td>3</td>
           </tr>
         </tbody>
@@ -422,20 +433,26 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td>CMP 436</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP436' %}">Transportation Engineering II</a></td>
+            <td>TRP 477</td>
+            <td><a href="{% url 'viewnotes' course_code='TRP477' %}">Transportation Engineering II</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>CMP 420</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP420' %}">Software Project Management </a></td>
+            <td>MNG 430</td>
+            <td><a href="{% url 'viewnotes' course_code='MNG430' %}">Construction Project Management</a></td>
             <td>3</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>CMP 490</td>
-            <td><a href="{% url 'viewnotes' course_code='CMP490' %}">Project III</a></td>
+            <td>MNG 425</td>
+            <td><a href="{% url 'viewnotes' course_code='MNG425' %}">Professional Pratice</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>PRJ 400</td>
+            <td><a href="{% url 'viewnotes' course_code='PRJ400' %}">Project </a></td>
             <td>5</td>
           </tr>
         </tbody>

@@ -3,21 +3,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate,logout
 from django.contrib  import messages
 from notes.models import Notes
+from main.models import Contact
 from django.shortcuts import get_object_or_404
 
 def call_context():
     pending_notes = Notes.objects.filter(status='pending')
     accepted_notes = Notes.objects.filter(status='accepted')
     rejected_notes = Notes.objects.filter(status='rejected')
+    user_messages = Contact.objects.all()
     context1 = {
         'pn': pending_notes,
         'an': accepted_notes,
         'rn': rejected_notes,
+        'um': user_messages,
     }
     context2 = {
         'pn_count': pending_notes.count(),
         'an_count': accepted_notes.count(),
         'rn_count': rejected_notes.count(),
+        'um_count': user_messages.count(),
     }
     context = {'context1':context1,'context2': context2}
     return context
@@ -49,15 +53,19 @@ def admin_login(request):
         
 def pending_notes(request):
     context = call_context()
-    return render(request,'pending_notes.html',context)
+    return render(request,'notes/pending_notes.html',context)
 
 def accepted_notes(request):
     context = call_context()
-    return render(request,'accepted_notes.html',context)
+    return render(request,'notes/accepted_notes.html',context)
 
 def rejected_notes(request):
     context = call_context()
-    return render(request,'rejected_notes.html',context)
+    return render(request,'notes/rejected_notes.html',context)
+
+def user_messages(request):
+    context = call_context()
+    return render(request,'user_messages.html',context)
 
 def signout(request):
     logout(request)
@@ -69,11 +77,23 @@ def assign_accepted(request, pid):
     note.status = 'accepted'
     note.save()
     context = {'pn': [note]} 
-    return redirect('admin_dashboard')
+    return redirect('rejected_notes')
 
 def assign_rejected(request, pid):
     note = get_object_or_404(Notes, id=pid)
     note.status = 'rejected'
     note.save()
     context = {'pn': [note]} 
-    return redirect('admin_dashboard')
+    return redirect('accepted_notes')
+
+def submit_message(request):
+    if request.method=='POST':
+        name = request.POST['name']
+        email =request.POST['email']
+        message = request.POST['message']
+        new_message = Contact.objects.create(name=name,email=email,message=message)
+        new_message.save()
+        messages.success(request,'Message Sent Successfully!')
+        return redirect('home')
+    return HttpResponse('something went wrong!')
+
