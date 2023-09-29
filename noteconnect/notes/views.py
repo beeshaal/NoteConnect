@@ -52,8 +52,12 @@ def uploadnotes(request):
 
 def viewnotes(request,course_code):
     allnotes = Notes.objects.filter(coursecode=course_code).filter(status='accepted')
-    context = {'allnotes': allnotes}
-    return render(request,'notes/view-notes.html',context)
+    context1 = {'allnotes': allnotes}
+    context2 = {'notesnotfound':'Notes not found!'}
+    if allnotes:
+        return render(request,'notes/view-notes.html',context1)
+    else:
+        return render(request,'notes/no_uploads.html',context2)
 
 def notes_home(request):
     return render(request,'notes/notes_navigation.html')
@@ -62,10 +66,11 @@ def myuploads(request):
     user = User.objects.get(id= request.user.id)
     mynotes = Notes.objects.filter(user=user)
     if mynotes.count() == 0:
-        return render(request,'notes/no_uploads.html')
+        context1 = {'notesnotfound': 'You have not uploaded yet!'}
+        return render(request,'notes/no_uploads.html',context1)
     else:
-        context={'mynotes': mynotes}
-        return render(request,'notes/viewmynotes.html',context)
+        context2={'mynotes': mynotes}
+        return render(request,'notes/viewmynotes.html',context2)
 
 def view_programs(request):
    return render(request,'notes/view_programs.html')

@@ -69,6 +69,3 @@ def signout(request):
     logout(request)
     messages.success(request,'Signed out successfully!')
     return redirect('home')
-
-def qna_section(request):
-    return HttpResponse("Oops! We are working on it:(")

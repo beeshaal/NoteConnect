@@ -6,7 +6,6 @@ urlpatterns = [
     path('signup',views.signup,name='signup'),
     path('signin',views.signin,name='signin'),
     path('signout',views.signout,name='signout'),
-    path('notes',include('notes.urls')),
-    path('QnA',views.qna_section,name="qna_section"),
-
+    path('notes/',include('notes.urls')),
+    path('QnA/',include('qna.urls')),
 ]

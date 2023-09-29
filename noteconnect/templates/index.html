@@ -261,7 +261,7 @@ body {
                     <a class="nav-link" href="{% url 'uploadnotes' %}">Note Sharing</a>
                 </li>
                 <li class="nav-item active mr-sm-3">
-                    <a class="nav-link" href="QnA">QnA</a>
+                    <a class="nav-link" href="{%url 'ask_question'%}">QnA</a>
                 </li>
                 {%else%}
                 <li class="nav-item active mr-sm-3">
@@ -441,15 +441,15 @@ aria-hidden="true">
                 {% if user.is_authenticated %}
                 <div class="ser-box">
                     <img src="{% static 'images/ser1.png' %}" alt="ser1">
-                    <a href="notes/view-notes"><button type="button" class="btn btn-outline-primary">View notes</button></a>
+                    <a href="{% url 'view_programs' %}"><button type="button" class="btn btn-outline-primary">View notes</button></a>
                 </div>
                 <div class="ser-box">
                     <img src="{% static 'images/ser2.png' %}" alt="ser2">
-                    <a href="notes/upload-notes"><button type="button" class="btn btn-outline-primary">Upload notes</button></a>
+                    <a href="{% url 'uploadnotes' %}"><button type="button" class="btn btn-outline-primary">Upload notes</button></a>
                 </div>
                 <div class="ser-box">
                     <img src="{% static 'images/ser3.png' %}" alt="ser3">
-                    <a href="QnA"><button type="button" class="btn btn-outline-primary">QnA</button></a>
+                    <a href="{% url 'ask_question' %}"><button type="button" class="btn btn-outline-primary">QnA</button></a>
                 </div>
                 {%else%}
                 <div class="ser-box">

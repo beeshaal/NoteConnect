@@ -1,0 +1,47 @@
+.qna-post {
+        border: 1px solid #ccc;
+        width:1200px;
+        margin: 30px auto;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #dedede;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+.user-name {
+    font-size: 20x;
+    font-weight: bold;
+}
+.post-title {
+    font-size: 18px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.post-time{
+    font-size: 15px;
+    margin-top: 2px;
+}
+
+.post-description {
+    font-size: 16px;
+}
+.qna-post-actions {
+    margin-top: 10px;
+}
+
+.upvote-btn,
+.downvote-btn,
+.comment-btn {
+    padding: 15px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+strong{
+    font-size: 18px;
+}
+svg{
+    margin-bottom:8px;
+}
+
+.hidden {
+    display: none !important;
+}
