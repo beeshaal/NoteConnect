@@ -9,7 +9,7 @@ from django.db import IntegrityError
 import re
 
 def home(request):
-    return render(request,'home.html')
+    return render(request,'index.html')
     
 def signup(request):
     if request.method == 'POST':

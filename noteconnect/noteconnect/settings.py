@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-kv+tuzc3c9upv=*5cz*ipvw##e_krv)ga--6d@xxrx2_%*8$^c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.1.69','192.168.254.201','192.168.254.216','localhost','127.0.0.1','172.16.7.111']
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10 * 1024 * 1024 # 100 MB
 
 
 # Application definition
@@ -40,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'notes',
+    'customadmin',
+    'qna',
 ]
 
 MIDDLEWARE = [

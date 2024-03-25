@@ -1,0 +1,20 @@
+{% extends 'qna/qna_home.html' %}
+{% load static %}
+{% block title %}
+<title>Notifications</title>
+<link rel="stylesheet" href="{% static 'css/qna_post.css' %}">
+{% endblock title%}
+
+{%block content%}
+<h2 class=" mt-lg-5 mb-sm-4 d-flex justify-content-center">Your Post Notifications</h2>
+{%for comment in allcomments%}
+<div class="qna-post m-auto">
+    <div style="margin:auto; background-color: " class="d-flex">
+        <a style="text-decoration:none; color:black;" href="#"><h4>
+        <strong style="font-size:22px;">{{comment.fullname}}</strong> <span style="font-size:22px;">commented on your post. </span> <span style="font-size:18px;"> {{comment.formatted_time}}</span></h4> 
+           </a>
+    </div>
+</div>
+{%endfor%}
+{%endblock content%}
+

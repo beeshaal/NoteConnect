@@ -1,0 +1,21 @@
+{% extends 'notes/notes_navigation.html'%}
+
+{% block content%}
+<form method='post' action="{% url 'render_programs'%}">
+    {% csrf_token %}
+        <div class="d-flex mt-lg-4" style="margin-left: 600px;">
+        <select id="program" name="program" class="form-control mr-lg-2" style="width:250px;">
+            <option value="">Select Program</option>
+            <option value="BE Computer">BE Computer</option>
+            <option value="BE Civil">BE Civil</option>
+            <option value="BE Software">BE Software</option>
+            <option value="BE IT">BE IT</option>
+            <option value="BCA">BCA</option>
+          </select>
+        <button type="submit" class="btn btn-success"> Enter </button>
+    </div>
+  </form>
+{% endblock content %}
+
+{%block anothercontent %}
+{% endblock anothercontent %}

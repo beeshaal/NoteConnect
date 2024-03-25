@@ -1,0 +1,29 @@
+{%extends 'qna/qna_home.html'%}
+{%load static%}
+<!DOCTYPE html>
+{%block title%}<title>Upload Posts</title>{%endblock title%} 
+{%block content%}
+<div class="container" style="width:1000px; font-weight:bold">
+  <h3 class="mt-lg-2 mb-lg-5" style="text-align:center;">Ask your question here</h3>
+  <form enctype="multipart/form-data" method='POST'>
+    {%csrf_token %}
+    <div class="form-group">
+        <label for="description">What course is question related to?</label>
+        <input type='text' class="form-control" id="course" name="course" 
+        placeholder="Example- Physics, Database Management Systems, Artificial Intelligence...."
+        required></input>
+      </div>
+      <div class="form-group">
+        <label for="description">Question Title</label>
+        <input type='text' class="form-control" id="title" name="title" 
+        required></input>
+      </div>
+    <div class="form-group">
+      <label for="description">Question description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+    </div>
+    <a href="{% url 'ask_question' %}"><button type="submit" class="btn btn-success">Upload Post</button></a>
+
+  </form>
+</div>
+{%endblock content%}

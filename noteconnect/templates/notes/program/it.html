@@ -1,0 +1,462 @@
+{% extends 'notes/notes_navigation.html'%}
+{% block title %}
+<title>View Notes</title>
+{% endblock title %}
+
+{% block style %}
+<style>
+    .container {
+      display: inline-block;
+      width: 45%;
+      margin: 2%;
+      padding: 10px 10px;
+    }
+    h2{
+      font-size: 20px;
+      text-align:center;
+    }
+    .semester-heading {
+      text-align: center;
+    }
+    
+    table {
+      width: 600px;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    
+    th {
+      background-color: #f2f2f2;
+      color:black;
+    }
+    .main{
+     margin: 20px;
+    }
+    a{
+       text-decoration :none;
+    }
+  </style>
+{% endblock style %}
+
+{% block content %}
+<form method='post' action="{% url 'render_programs'%}">
+    {% csrf_token %}
+        <div class="d-flex mt-lg-4" style="margin-left: 600px;">
+        <select id="program" name="program" class="form-control mr-lg-2" style="width:250px;">
+            <option value="">Select Program</option>
+            <option value="BE Computer">BE Computer</option>
+            <option value="BE Civil">BE Civil</option>
+            <option value="BE Software">BE Software</option>
+            <option value="BE IT">BE IT</option>
+            <option value="BCA">BCA</option>
+          </select>
+        <button type="submit" class="btn btn-success"> Enter </button>
+    </div>
+  </form>
+<div class="main" style="margin:80px;">
+    <div class="container">
+      <h2 class="semester-heading">Semester I</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 111</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH111' %}">Engineering Mathematics I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>PHY 102</td>
+            <td><a href="{% url 'viewnotes' course_code='PHY102' %}">Physics</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ENG 104</td>
+            <td><a href="{% url 'viewnotes' course_code='ENG 104' %}">Communication Technique</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 102</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP102' %}">Problem Solving Techniques</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>ELE 105</td>
+            <td><a href="{% url 'viewnotes' course_code='ELE105' %}">Basic Electrical Engineering</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>CMP 103</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP103' %}">Programming in C</a></td>
+            <td>3</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester II</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 121</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH121' %}">Engineering Mathematics II</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>ELE 125</td>
+            <td><a href="{% url 'viewnotes' course_code='ELE125' %}">Network Theory</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>MTH 122</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH122' %}">Mathematical Foundation of Computer Science</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>ELX 213</td>
+            <td><a href="{% url 'viewnotes' course_code='ELX213' %}">Electronic Devices</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>MEC 109</td>
+            <td><a href="{% url 'viewnotes' course_code='MEC109' %}">Engineering Drawing</a></td>
+            <td>1</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>CMP 104</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP104' %}">Object Oriented Programming in C++</a></td>
+            <td>2</td>
+          </tr>
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    </div>
+  
+    <div class="container">
+      <h2 class="semester-heading">Semester III</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 211</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH211' %}">Engineering Mathematics III</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>ELX 224</td>
+            <td><a href="{% url 'viewnotes' course_code='ELX224' %}">Electronic Circuits-I</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ELX 212</td>
+            <td><a href="{% url 'viewnotes' course_code='ELX212' %}">Logic Circuits</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 336</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP336' %}">Data and File Structure</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>MTH 213</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH213' %}">Probablity and Queuing Theory</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>CMP 203</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP203' %}">Programming in Java</a></td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester IV</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>MTH 223</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH223' %}">Engineering Mathematics IV</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CMP 227</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP227' %}">Microprocessor and Assembly Language Programming</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>ELE 221</td>
+            <td><a href="{% url 'viewnotes' course_code='ELE221' %}">Instrumentation</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 387</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP387' %}">Database System</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>CMP 386</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP386' %}">Software Engineering Fundamentals</a></td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester V</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CMP 333</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP333' %}">Applied Operating System</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>MTH 317</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH317' %}">Numerical Methods</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>CMP 212</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP212' %}">Computer Organization and Architecture</a></td>
+            <td>4</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>ELX 478</td>
+            <td><a href="{% url 'viewnotes' course_code='ELX478' %}">Principles Communication</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>CMM 353</td>
+            <td><a href="{353% url 'viewnotes' course_code='CMM353' %}">Signal System and Processing</a></td>
+            <td>4</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester VI</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CMP 333</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP333' %}">High-End Computer Architecture</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>MTH 317</td>
+            <td><a href="{% url 'viewnotes' course_code='MTH317' %}">Computer Graphics</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>CMM 362</td>
+            <td><a href="{% url 'viewnotes' course_code='CMM362' %}">Data Communication</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>ELX 478</td>
+            <td><a href="{% url 'viewnotes' course_code='ELX478' %}">Web Technology</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>CMM 353</td>
+            <td><a href="{% url 'viewnotes' course_code='CMM353' %}">Organization and Management</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>CMP 476</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP476' %}">Object Oriented Design and Modeling through UML</a></td>
+            <td>3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester VII</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CMP 366</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP 366' %}">Multimedia Systems</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CMM 481</td>
+            <td><a href="{% url 'viewnotes' course_code='CMM481' %}">Telecommunication</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>CMP 474</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP474' %}">Computer Networks</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>MNG 412</td>
+            <td><a href="{% url 'viewnotes' course_code='MNG412' %}">Managerial Economics</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>PRJ 300</td>
+            <td><a href="{% url 'viewnotes' course_code='PRJ300' %}">Minor Project</a></td>
+            <td>2</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <!-- Add more containers with similar structure for remaining semesters -->
+    <div class="container">
+      <h2 class="semester-heading">Semester VIII</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>SN</th>
+            <th>Course Code</th>
+            <th>Course</th>
+            <th>Credit Hour</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>CMP 477</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP477' %}">Client Server Architecture and Applications</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>CMP 478</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP478' %}">Network Programming</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>MNG 413</td>
+            <td><a href="{% url 'viewnotes' course_code='MNG413' %}">Project Management</a></td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>CMP 494</td>
+            <td><a href="{% url 'viewnotes' course_code='CMP494' %}">Social and Professional Issues in IT</a></td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>PRJ 401</td>
+            <td><a href="{% url 'viewnotes' course_code='PRJ401' %}">Project Work</a></td>
+            <td>5</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock content %}

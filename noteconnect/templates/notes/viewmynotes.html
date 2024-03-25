@@ -1,0 +1,41 @@
+{%extends 'notes/notes_navigation.html' %}
+
+{% block title %}
+<title> My Uploads</title>
+{% endblock title %}
+
+{% block content%}
+<h3 class="mt-lg-5" style="text-align:center;">Your Uploads</h3>
+<div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>SN</th>
+          <th>Uploaded On</th>
+          <th>Program</th>
+          <th>Semester</th>
+          <th>Course Name</th>
+          <th>File</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      {% for i in mynotes %}
+      <tbody>
+        <tr style="text-align: center;">
+          <td>{{forloop.counter}}</td>
+          <td>{{i.upload_date}}</td>
+          <td>{{i.program}}</td>
+          <td>{{i.semester}}</td>
+          <td>{{i.course}}</td>
+          <td><a href="{{i.notesfile.url}}"download>{{i.notesfile}}</a></td>
+          <td>{{i.status}}</td>
+          <td>
+            <button onclick="window.location.href='{% url 'delete_note' i.id %}'" class="btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+      {%endfor%}
+    </table>
+  </div>
+{% endblock content %}

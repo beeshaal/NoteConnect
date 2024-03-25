@@ -1,0 +1,143 @@
+{%extends 'notes/notes_navigation.html'%}
+{%load static%}
+<!DOCTYPE html>
+{%block title%}<title>Upload Notes</title>{%endblock title%} 
+{%block content%}
+<div class="container" style="width:1000px; font-weight:bold">
+  <h3 class="mt-lg-2" style="text-align:center;">Upload Your Notes Here</h3>
+  <form enctype="multipart/form-data" method='POST'>
+    {%csrf_token %}
+    <div class="form-group">
+      <label for="program">Program</label>
+      <select class="form-control" id="program" name="program" required>
+        <option value="">Select Program</option>
+        <option value="BE Computer">BE Computer</option>
+        <option value="BE Civil">BE Civil</option>
+        <option value="BE Software">BE Software</option>
+        <option value="BE IT">BE IT</option>
+        <option value="BCA">BCA</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="semester">Semester</label>
+      <select class="form-control" id="semester" name="semester" required>
+        <option value="">Select Semester</option>
+        <option value="I">I</option>
+        <option value="II">II</option>
+        <option value="III">III</option>
+        <option value="IV">IV</option>
+        <option value="V">V</option>
+        <option value="VI">VI</option>
+        <option value="VII">VII</option>
+        <option value="VIII">VIII</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="course">Course</label>
+      <select class="form-control" id="course" name="course" required>
+        <option value="">Select Course</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="file-type">File Type</label>
+      <select type="text" class="form-control" id="file-type" name="filetype" required>
+        <option value="">Select File Type</option>
+        <option value="pdf">PDF</option>
+        <option value="docx">DOC</option>
+        <option value="ppt">PPT</option>
+        <option value="txt">TXT</option>
+        <option value="img">IMG</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="note-file">Note File</label>
+      <input type="file" class="form-control-file" id="note-file" name="file" required>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+    </div>
+    <a href="{% url 'uploadnotes' %}"><button type="submit" class="btn btn-success">Upload</button></a>
+  </form>
+</div>
+{%endblock content%}
+{%block script%}
+<script>
+  const courseOptions = {
+    'BE Computer': {
+      'I': ['Engineering Mathematics I', 'Chemistry', 'Communication Technique','Programming in C','Basic Electrical Engineering','Mechanical Workshop'],
+      'II': ['Engineering Mathematics II','Physics','Engineering Drawing','Object Oriented Programming in C++','Thermal Science','Applied Mechanics'],
+      'III': ['Engineering Mathematics III','Data Structure and Algorithm','Electrical Engineering Materials','Network Theory','Electronic Devices','Logic Circuits'],
+      'IV': ['Engineering Mathematics IV','Instrumentation','Electronic Circuits','Theory of Computation','Microprocessors'],
+      'V': ['Numerical Methods','	Microprocessor System and Interfacing','Operating System','Computer Graphics','Integrated Digital Electronics'],
+      'VI':['Probability and Statistics','Simulation and Modeling','Data Communication','Database Management System','	Object Oriented Software Engineering','Minor Projects'],
+      'VII': ['Engineering Economics','Computer Architecture','Digital Signal Processing','Computer Network','Elective I'],
+      'VIII': ['Organization and Management','Artificial Intelligence','Image Processing & Pattern Recognition','Project','Elective II'],
+    },
+    'BE Civil': {
+      'I': ['Course 1', 'Course 2', 'Course 3'],
+      'II': ['','','','','',''],
+      'III': ['','','','','',''],
+      'IV': ['Engineering Geology','','','','',''],
+      'V': ['','','','','',''],
+      'VI':['','','','','',''],
+      'VII': ['','','','','',''],
+      'VIII': ['','','','','',''],
+    },
+    'BE Software': {
+        'I': ['Course 1', 'Course 2', 'Course 3'],
+        'II': ['','','','','',''],
+        'III': ['','','','','',''],
+        'IV': ['','','','','',''],
+        'V': ['','','','','',''],
+        'VI':['','','','','',''],
+        'VII': ['','','','','',''],
+        'VIII': ['','','','','',''],
+      },
+    'BE IT': {
+        'I': ['Course 1', 'Course 2', 'Course 3'],
+        'II': ['','','','','',''],
+        'III': ['','','','','',''],
+        'IV': ['','','','','',''],
+        'V': ['','','','','',''],
+        'VI':['','','','','',''],
+        'VII': ['Telecommunication','','','','',''],
+        'VIII': ['','','','','',''],
+      },
+    'BCA': {
+        'I': ['Course 1', 'Course 2', 'Course 3'],
+        'II': ['','','','','',''],
+        'III': ['','','','','',''],
+        'IV': ['','','','','',''],
+        'V': ['','','','','',''],
+        'VI':['','','','','',''],
+        'VII': ['','','','','',''],
+        'VIII': ['','','','','',''],
+      },
+  };
+
+  // Function to populate the course options based on the selected program and semester
+  function populateCourseOptions() {
+    const program = document.getElementById('program').value;
+    const semester = document.getElementById('semester').value;
+    const courseSelect = document.getElementById('course');
+
+    // Clear existing options
+    courseSelect.innerHTML = '<option value="">Select Course</option>';
+
+    if (program && semester && courseOptions[program] && courseOptions[program][semester]) {
+      const courses = courseOptions[program][semester];
+      courses.forEach(course => {
+        const option = document.createElement('option');
+        option.text = course;
+        option.value = course;
+        courseSelect.appendChild(option);
+      });
+    }
+  }
+  document.getElementById('program').addEventListener('change', populateCourseOptions);
+  document.getElementById('semester').addEventListener('change', populateCourseOptions);
+</script>
+{%endblock script%}

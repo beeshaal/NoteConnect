@@ -1,0 +1,190 @@
+{%load static%}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NoteConnect - Admin Dashboard</title>
+  <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+  <style>
+    body{
+      background-color:#e6ffff;
+    }
+    /* Style for the container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    /* Style for the title */
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    /* Style for the navbar */
+    .navbar {
+      background-color: #333;
+      overflow: hidden;
+      position: relative;
+    }
+    .navbar a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 22px;
+    }
+    .navbar a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+    .navbar a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    /* Style for the logout button */
+    .logout-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: green;
+      color: #fff;
+      border: none;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 17px;
+      cursor: pointer;
+    }
+    .logout-btn:hover {
+      background-color: darkgreen;
+    }
+    /* Style for the card blocks */
+    .card {
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      background-color: #f2f2f2;
+      margin-bottom: 20px;
+    }
+    .card h2 {
+      margin-top: 0;
+    }
+    .container {
+      max-width: 1500px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    /* Style for the title */
+    h1 {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    /* Style for the table */
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background-color: #f2f2f2;
+    }
+    th, td {
+      text-align: center;
+      padding: 8px;
+    }
+    th {
+      background-color: #333;
+      color: white;
+    }
+    tr{
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>NoteConnect - Admin Dashboard</h1>
+    <div class="navbar">
+      {%block notecount%}
+      <a  href="{%url 'pending_notes'%}"><strong style="color:yellow; font-size:22px;">{{context2.pn_count}}</strong> Pending Notes</a>
+      <a  href="{%url 'accepted_notes'%}"><strong style="color:lightgreen; font-size:22px;">{{context2.an_count}}</strong> Accepted Notes</a>
+      <a  href="{%url 'rejected_notes'%}"><strong style="color:red; font-size:22px;">{{context2.rn_count}}</strong> Rejected Notes</a>
+      <a  href="{% url 'user_messages' %}"><strong style="color:blue; font-size:22px;">{{context2.um_count}}</strong> User Messages</a>
+      {% endblock notecount %}
+    </div>
+    <a href="signout" class="logout-btn">Logout</a>
+  </div>
+
+  {% block content%}{%endblock content%}
+  {% for message in messages %}
+  {% if message.tags == 'success' %}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+   crossorigin="anonymous"></script>
+   <script>
+       $(document).ready(function(){
+           $("#myMessage").modal('show');
+       });
+   </script>
+   <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="myMessageLabel">Perfect!</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div class="modal-body text-center">
+               <div class="text-center text-success mt-3">
+                  <img src=" {% static 'images/greentick.png' %} " width="100px" height="100px" alt="verified logo">
+               </div>
+               <br>
+               <div class="mb-3">{{message}}</div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+           </div>
+         </div>
+       </div>
+     </div>
+   {% else %}
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+   integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+   crossorigin="anonymous"></script>
+   <script>
+       $(document).ready(function(){
+           $("#myMessage").modal('show');
+       });
+   </script>
+   <div class="modal fade" id="myMessage" tabindex="-1" role="dialog" aria-labelledby="myMessageLabel" aria-hidden="true">
+       <div class="modal-dialog modal-dialog-centered" role="document">
+         <div class="modal-content">
+           <div class="modal-header">
+             <h5 class="modal-title" id="myMessageLabel">Oops!!</h5>
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+             </button>
+           </div>
+           <div class="modal-body text-center">
+               <div class="text-center text-success mt-3">
+                  <img src=" {% static 'images/cross.png' %} " width="100px" height="100px" alt="verified logo">
+               </div>
+               <br>
+               <div class="mb-3">{{message}}</div>
+           </div>
+           <div class="modal-footer">
+             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+           </div>
+         </div>
+       </div>
+     </div>
+   {% endif %}
+  {% endfor%}
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+  crossorigin="anonymous"></script>
+</body>
+</html>
