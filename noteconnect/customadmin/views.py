@@ -52,20 +52,40 @@ def admin_login(request):
         return render(request,'admin_login.html')
         
 def pending_notes(request):
+    pending_notes = Notes.objects.filter(status='pending')
     context = call_context()
-    return render(request,'notes/pending_notes.html',context)
+    context['notesnotfound']= 'No pending notes!'
+    if pending_notes:
+        return render(request,'notes/pending_notes.html',context)
+    else:
+        return render(request,'notes/no_notes_admin.html',context)
 
 def accepted_notes(request):
+    accepted_notes = Notes.objects.filter(status='accepted')
     context = call_context()
-    return render(request,'notes/accepted_notes.html',context)
+    context['notesnotfound']= 'No accepted notes!'
+    if accepted_notes:
+        return render(request,'notes/accepted_notes.html',context)
+    else:
+        return render(request,'notes/no_notes_admin.html',context)
 
 def rejected_notes(request):
+    rejected_notes = Notes.objects.filter(status='rejected')
     context = call_context()
-    return render(request,'notes/rejected_notes.html',context)
+    context['notesnotfound']= 'No rejected notes!'
+    if rejected_notes:
+        return render(request,'notes/rejected_notes.html',context)
+    else:
+        return render(request,'notes/no_notes_admin.html',context)
 
 def user_messages(request):
+    user_messages = Contact.objects.all()
     context = call_context()
-    return render(request,'user_messages.html',context)
+    context['notesnotfound']= 'No user feedbacks!'
+    if user_messages:
+      return render(request,'user_messages.html',context)
+    else:
+      return render(request,'notes/no_notes_admin.html',context)
 
 def signout(request):
     logout(request)

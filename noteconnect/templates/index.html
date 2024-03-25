@@ -288,10 +288,6 @@ body {
               {%endif%}
               {% endblock rightnav %}
           {% else %}
-          {% comment %} <form class="form-inline my-2 my-lg-0 ">
-              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success my-2 my-sm-0 mr-sm-5" type="submit">Search</button>    
-          </form> {% endcomment %}
           <button class="btn btn-success mr-sm-3" type="submit" data-toggle="modal"
                   data-target="#signupModal">Sign Up</button>
           <button class="btn btn-success mr-sm-2" type="submit" type="submit" data-toggle="modal"
@@ -405,7 +401,7 @@ aria-hidden="true">
         </div>
         <div class="d-flex justify-content-center mt-lg-3">
             {% if user.is_authenticated %}
-           <a href="/"><button type="button" class="btn btn-success px-lg-5">Get started >></button></a>
+           <a href="{% url 'uploadnotes' %}"><button type="button" class="btn btn-success px-lg-5">Get started >></button></a>
            {% else %}
            <button class="btn btn-success mr-sm-2 px-lg-5" type="submit" type="submit" data-toggle="modal"
                     data-target="#signinModal">Get Started >></button>

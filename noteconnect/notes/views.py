@@ -26,6 +26,29 @@ coursecodelist = {
     'Electronic Devices':'ELX213',
     'Logic Circuits':'ELX212',
     'Engineering Mathematics IV':'MTH223',
+    'Instrumentation':'ELE221',
+    'Electronic Circuits':'ELE225',
+    'Theory of Computation':'CMP224',
+    'Microprocessors':'ELX226',
+    'Numerical Methods':'MTH317',
+    'Probability and Statistics':'MTH212',
+    'Operating Systems':'CMP332',
+    'Computer Architecture':'CMP472',
+    'Computer Graphics':'CMP364',
+    'Simulation and Modeling':'CMP381',
+    'Data Communication':'CMM362',
+    'Object Oriented Software Engineering':'CMP388',
+    'Embedded Systems':'ELX312',
+    'Project II':'CMP390',
+    'Engineering Economics':'MNG410',
+    'Image Processing and Pattern Recognition':'CMP481',
+    'Artificial Intelligence':'CMP421',
+    'Computer Network':'CMP474',
+    'ICT Project Management':'CMP483',
+    'Digital Signal Processing':'ELX482',
+    'Social and Professional Issues in IT':'CMP484',
+    'Organization and Management':'MNG411',
+    'Information Systems':'CMP481',
 }
 
 def uploadnotes(request):
@@ -87,10 +110,20 @@ def search_notes(request):
     messages.error(request,'Something wrong occured')
     return redirect('notes_home')
 
+import os
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect
+from .models import Notes
+
 def delete_note(request, id):
-    obj = Notes.objects.get(id=id)
-    obj.delete()
-    messages.success(request,'Note deleted successfully!')
+    note = get_object_or_404(Notes, id=id)
+    file_path = note.notesfile.path
+    note.delete()
+    if file_path and os.path.exists(file_path):
+        os.remove(file_path)
+        messages.success(request, 'Note deleted successfully and associated file removed.')
+    else:
+        messages.success(request, 'Note deleted successfully, but associated file not found.')
     return redirect('myuploads')
 
 def render_programs(request):

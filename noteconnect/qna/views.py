@@ -48,7 +48,7 @@ def ask_question(request):
         user = User.objects.filter(username=request.user.username).first()
         newpost = Post.objects.create(uploaded_by=user,uploaded_on= date.today(),course=course,title=title,description=description)
         newpost.save()
-        messages.success(request,'Submitted For Approval!')
+        messages.success(request,'Post Uploaded Successfully!')
         return redirect('myposts')
 
 def myposts(request):
@@ -99,37 +99,41 @@ def editpost(request,id):
 
 
 def viewpost(request):
-    if request.method=='POST':
-         search_field_data = request.POST['search']
-         allposts = Post.objects.filter(course__icontains=search_field_data) | Post.objects.filter(title__icontains=search_field_data) | Post.objects.filter(description__icontains=search_field_data)
+    if request.method == 'POST':
+        search_field_data = request.POST['search']
+        allposts = Post.objects.filter(course__icontains=search_field_data) | Post.objects.filter(title__icontains=search_field_data) | Post.objects.filter(description__icontains=search_field_data)
     else:
         allposts = Post.objects.all()
+    
     for post in allposts:
-        user=post.uploaded_by
-        fullname=user.first_name + " " + user.last_name
+        user = post.uploaded_by
+        author_fullname = user.first_name + " " + user.last_name
         time_difference = calculate_time_difference(post)
         formatted_time = format_time_difference(time_difference)
         post.formatted_time = formatted_time
-        allcomments= Comment.objects.filter(post=post)
+
+        allcomments = Comment.objects.filter(post=post)
         for comment in allcomments:
             time_diff = calculate_time_difference(comment)
             formatted_time = format_time_difference(time_diff)
             comment.formatted_time = formatted_time
-            user=comment.user
-            fullname=user.first_name + " " + user.last_name
-            if not user.is_superuser:
-               comment.fullname = fullname
+            comment_user = comment.user
+            fullname = comment_user.first_name + " " + comment_user.last_name
+            if comment_user.is_superuser:
+                comment.fullname = "Admin"
             else:
-                comment.fullname ="Admin"
+                comment.fullname = fullname
+        
         post.allcomments = allcomments
         comment_count = allcomments.count()
         post.comment_count = comment_count
         if user.is_superuser:
-           post.fullname = "Admin"
-        else :
-           post.fullname=fullname
-    context={'accepted_posts':allposts}
-    return render(request,'qna/view_post.html',context)  
+            post.fullname = "Admin"
+        else:
+            post.fullname = author_fullname
+    
+    context = {'accepted_posts': allposts}
+    return render(request, 'qna/view_post.html', context)
 
 
 def post_comment(request, id):
@@ -162,20 +166,18 @@ def post_comment(request, id):
 
 def handle_notifications(request):
     myallposts = Post.objects.filter(uploaded_by=request.user)
-    allcomments_in_mypost = Comment.objects.none()  # Initialize as an empty queryset
-    
+    allcomments_in_mypost = Comment.objects.none()
     for post in myallposts:
-        allcomments_in_mypost = allcomments_in_mypost | Comment.objects.filter(post=post)  # Update with comments
+        allcomments_in_mypost = allcomments_in_mypost | Comment.objects.filter(post=post)  
     
         for comment in allcomments_in_mypost:
             commented_by = comment.user
-            if commented_by is not request.user:
-                if commented_by.is_superuser:
-                   comment.fullname = "Admin"
-                else:
-                   comment.fullname = commented_by.first_name + " "+ commented_by.last_name
+            if commented_by == request.user: 
+                comment.fullname = "You"
+            elif commented_by.is_superuser:
+                comment.fullname = "Admin"
             else:
-              comment.fullname = "You"
+                comment.fullname = commented_by.first_name + " " + commented_by.last_name
             time_diff = calculate_time_difference(comment)
             formatted_time = format_time_difference(time_diff)
             comment.formatted_time = formatted_time
@@ -186,6 +188,7 @@ def handle_notifications(request):
         return render(request, 'qna/view_notifications.html', context1)
     else:
         return render(request, 'qna/no_posts.html', context2)
+
     
 def search_posts(request):
     if request.method == 'POST':
